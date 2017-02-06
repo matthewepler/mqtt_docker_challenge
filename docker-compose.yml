@@ -1,0 +1,13 @@
+version: '2'
+
+services:
+  client1:
+    build:
+      context: .
+      dockerfile: Dockerfile.development
+    container_name: client1
+    command: ./docker-start.sh
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./:/home/app/src/

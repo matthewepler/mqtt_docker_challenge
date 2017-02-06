@@ -1,0 +1,61 @@
+h3 {
+	padding-left: 1rem;
+}
+
+#main-container {
+	display: flex;
+	height: 500px;
+}
+
+#nav-container {
+	background-color: pink;
+	max-width: 200px;
+	flex: 1;
+}
+
+.sec-header {
+	display: flex;
+	align-items: center;
+	padding: 1rem;
+}
+
+.button-sm {
+	background-color: rgba(0, 0, 0, 0.25);
+	color: white;
+	font-size: 0.75rem;
+	padding: 0.25rem;
+	margin-left: 1rem;
+}
+
+.button-sm:hover {
+	background-color: black;
+}
+
+.button-sm:active {
+	background-color: rgba(0, 0, 0, 0.25);
+}
+
+#chat-container {
+	background-color: turquoise;
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+}
+
+#feed {
+	flex: 1;
+	background-color: rgba(0, 0, 0, 0.2);
+}
+
+#input-box {
+	background-color: rgba(255, 0, 0, 0.5);
+}
+
+input {
+	padding: 0.5rem;
+	width: 80%;
+}
+
+.label {
+	padding-left: 0.5rem;
+}
