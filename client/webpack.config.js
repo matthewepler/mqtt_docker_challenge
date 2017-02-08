@@ -16,7 +16,8 @@ module.exports = {
 	  new HtmlWebpackPlugin({
 	    template: resolve(__dirname, 'public/index.html')
 		}),
-		new webpack.NamedModulesPlugin()
+		new webpack.NamedModulesPlugin(),
+		new webpack.EnvironmentPlugin(['NAME'])
 	],
 	devServer: {
 		contentBase: resolve(__dirname, 'public'),

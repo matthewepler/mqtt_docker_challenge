@@ -1,13 +1,24 @@
 version: '2'
 
 services:
+  broker:
+    build:
+      context: ./broker
+      dockerfile: Dockerfile.development
+    container_name: broker
+    ports:
+      - "1883"
+      - "9001"
   client1:
     build:
-      context: .
+      context: ./client
       dockerfile: Dockerfile.development
     container_name: client1
     command: ./docker-start.sh
+    environment:
+      - NAME=client1
     ports:
       - "8080:8080"
     volumes:
-      - ./:/home/app/src/
+      - ./client:/home/app/src/
+
