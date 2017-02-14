@@ -1,6 +1,12 @@
 const mqtt = require('mqtt')
 const client = mqtt.connect('mqtt://localhost:9001')
- 
-client.on('connect', function() {
-	console.log(process.env.NAME + ' has connected')
+
+client.on('connect', function () {
+  console.log(process.env.NAME + ' has connected')
 })
+
+module.exports = {
+  sendMessage: function (msg, callback) {
+    client.publish('welcome', 'hello', callback)
+  }
+}

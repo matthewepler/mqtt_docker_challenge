@@ -14,7 +14,7 @@
     "webpack-dev-server": "^2.3.0"
   },
   "scripts": {
-    "test": "mocha",
+    "test": "mocha -u bdd -R spec --recursive --watch",
     "dev-start": "NAME=${NAME:=noname} webpack-dev-server"
   },
   "author": "",

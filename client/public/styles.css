@@ -48,7 +48,10 @@ h3 {
 }
 
 #input-box {
+	align-items: center;
 	background-color: rgba(255, 0, 0, 0.5);
+	display: flex;
+	padding: 10px;
 }
 
 input {
