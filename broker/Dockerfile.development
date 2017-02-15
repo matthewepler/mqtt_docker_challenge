@@ -2,4 +2,3 @@ FROM toke/mosquitto
 
 RUN groupadd -r nroot -g 433 && \
 useradd -u 431 -r -g nroot -c "docker image user" nroot
-

@@ -1,26 +1,17 @@
 const mqtt = require('mqtt')
 const client = mqtt.connect('mqtt://localhost:9001')
 
-client.subscribe('welcome')
-
 client.on('connect', function () {
   console.log(process.env.NAME + ' has connected')
+  client.subscribe('welcome')
+  client.publish('welcome', 'heeey')
 })
 
-client.on('message', function (topic, message) {
-  console.log(message.toString())
-})
-
-module.exports = {
-  sendMessage: function (msg, callback) {
-    client.publish('welcome', msg, callback)
-  }
-}
-
-process.on('SIGINT', function () {
+client.on('message', function (topic, msg) {
+  console.log('received: ' + msg.toString())
   client.end()
 })
 
-setTimeout(function () {
-  client.publish('welcome', 'come on')
-}, 5000)
+client.on('close', function () {
+  console.log('close event')
+})

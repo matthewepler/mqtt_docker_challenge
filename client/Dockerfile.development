@@ -5,6 +5,5 @@ WORKDIR /home/app/src
 RUN groupadd -r nroot -g 433 && \
 useradd -u 431 -r -g nroot -d /home/app/src -c "Docker image user" nroot && \
 chown -R nroot:nroot /home/app/src && \
-npm install -g --silent webpack yarn webpack-dev-server
 
 VOLUME /home/app/src
