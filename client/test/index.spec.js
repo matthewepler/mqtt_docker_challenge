@@ -8,8 +8,10 @@ chai.use(sinonChai)
 
 it('should connect to the broker', function () {
   const mqtt = require('mqtt')
+  // using known reliable broker
   const client = mqtt.connect('mqtt://broker.hivemq.com:1883')
   const connectionCallback = sinon.spy()
+
   client.on('connect', connectionCallback)
   expect(connectionCallback).to.have.been.called
 })
