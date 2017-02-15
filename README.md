@@ -40,3 +40,20 @@ Create an mqtt-backed chat application in a client/server Docker environment.
 ## Setup
 To run, go to the project's root folder and run `docker-compose up` (must have docker installed on your machine first). 
 
+
+## Basic Project Structure
+```
+mqtt_assignment
+  docker-compose.yml
+  client
+    docker-compose.yml
+    Dockerfile.development
+    public
+      index.html
+      index.js
+      bundle.js
+    test
+      index.spec.js
+  broker
+    Dockerfile.development
+```
