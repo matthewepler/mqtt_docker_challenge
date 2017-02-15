@@ -13,7 +13,7 @@ client.on('message', function (topic, message) {
 
 module.exports = {
   sendMessage: function (msg, callback) {
-    client.publish('welcome', 'hello', callback)
+    client.publish('welcome', msg, callback)
   }
 }
 
