@@ -9,9 +9,5 @@ client.on('connect', function () {
 
 client.on('message', function (topic, msg) {
   console.log('received: ' + msg.toString())
-  client.end()
 })
 
-client.on('close', function () {
-  console.log('close event')
-})

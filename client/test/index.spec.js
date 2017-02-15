@@ -1,19 +1,26 @@
-/* global it */
+/* global describe, it */
 
-const expect = require('chai').expect
-const mqtt = require('mqtt')
+const chai = require('chai')
+const sinon = require('sinon')
+const sinonChai = require('sinon-chai')
+const expect = chai.expect
+chai.use(sinonChai)
 
-// a listener object which we can use to confirm messages are received as sent
-const listener = mqtt.connect('mqtt://localhost:9001')
-listener.subscribe('welcome')
-listener.on('message', function (topic, message) {
-  // should this be a spy, mock or stub?
-})
+describe('MQTT messaging', function () {
+  const mqtt = require('mqtt')
+  const client = mqtt.connect('mqtt://localhost:9001')
 
-it('should send a string to the broker', () => {
-  client.sendMessage('hello', function (err) {
-    // expect err to be null
-    // expect that the listener got the message and it matches what we sent
+  client.subscribe('testTopic')
+  const connectCallback = sinon.spy()
+  const messageCallback = sinon.spy()
+  client.on('connect', connectCallback)
+  client.on('message', messageCallback)
+
+  it('should send a string to the broker', function () {
+    const message = 'testing testing 123'
+    client.publish('testTopic', message)
+    expect(messageCallback).to.have.been.called
+    expect(messageCallback).to.have.been.calledWith('testTopic', message)
   })
 })
 
