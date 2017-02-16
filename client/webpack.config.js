@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: [
-    resolve(__dirname, 'public/index.js')
+    resolve(__dirname, 'public/Client.js')
   ],
   output: {
     path: resolve(__dirname, '/public'),

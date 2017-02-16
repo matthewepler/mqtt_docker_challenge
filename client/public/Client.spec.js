@@ -8,20 +8,26 @@ import sinonChai from 'sinon-chai'
 chai.use(sinonChai)
 
 describe('[Client]', () => {
-  let cut
+  let cut // ?? why is this called cut? is this a term regularly used?
 
   before('setup spies', () => {
+    // before we start, create a stub that mocks the behavior of connect
+    // without calling it.
+    // ?? Is this copying the object completely?
     stub(mqtt, 'connect')
     spy(console, 'log')
   })
 
   beforeEach('mock cut, reset spies', () => {
+    // before each test, create a new client object, a new connection, and a
+    // clean spy
     cut = new Client()
     mqtt.connect.reset()
     console.log.reset()
   })
 
   after('setup spies', () => {
+    // release the functions we used with Sinon so they don't behave oddly
     mqtt.connect.restore()
     console.log.restore()
   })
@@ -29,6 +35,7 @@ describe('[Client]', () => {
   describe('[Client/init]', () => {
     it('should call mqtt.connect and client.on', () => {
       // given
+      // ?? resource for understanding event system better?
       mqtt.connect.returns({ on: spy() })
 
       // when
