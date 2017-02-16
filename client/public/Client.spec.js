@@ -1,9 +1,9 @@
-/* global describe, it */
+/* global after, before, beforeEach, describe, it */
 
 import mqtt from 'mqtt'
 import Client from './Client'
 import chai, { expect } from 'chai'
-import sinon, { spy, stub } from 'sinon'
+import { spy, stub } from 'sinon'
 import sinonChai from 'sinon-chai'
 chai.use(sinonChai)
 
@@ -34,7 +34,7 @@ describe('[Client]', () => {
       // when
       cut.init()
 
-      //then
+      // then
       expect(mqtt.connect).to.have.been.calledWith('mqtt://localhost:9001')
       expect(mqtt.connect).to.have.been.calledOnce
       expect(cut.client.on).to.have.been.calledWith('connect', cut.onConnect)
@@ -51,7 +51,7 @@ describe('[Client]', () => {
       // when
       cut.onConnect()
 
-      //then
+      // then
       expect(console.log).to.have.been.calledWith(process.env.NAME + ' has connected')
       expect(cut.client.subscribe).to.have.been.calledWith('welcome')
       expect(cut.client.publish).to.have.been.calledWith('welcome', 'heeey')
