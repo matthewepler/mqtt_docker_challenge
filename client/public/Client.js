@@ -8,13 +8,13 @@ export default class Client {
     this.client.on('message', this.onMessage)
   }
 
-  onConnect () {
+  onConnect = () => {
     console.log(process.env.NAME + ' has connected')
     this.client.subscribe('welcome')
     this.client.publish('welcome', 'heeey')
   }
 
-  onMessage (topic, msg) {
+  onMessage = (topic, msg) => {
     console.log('received: ' + msg.toString())
   }
 }
