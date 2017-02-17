@@ -6,6 +6,17 @@ module.exports = {
   entry: [
     resolve(__dirname, 'public/Client.js')
   ],
+  module: {
+    loaders: [
+      {
+        test: /\.js$/,
+        include: /public/,
+        use: {
+          loader: 'babel-loader',
+        },
+      },
+    ]
+  },
   output: {
     path: resolve(__dirname, '/public'),
     filename: 'bundle.js'
