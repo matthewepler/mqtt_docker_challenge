@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: [
-    resolve(__dirname, 'public/Client.js')
+    resolve(__dirname, 'public/index.js')
   ],
   module: {
     loaders: [
@@ -12,9 +12,9 @@ module.exports = {
         test: /\.js$/,
         include: /public/,
         use: {
-          loader: 'babel-loader',
-        },
-      },
+          loader: 'babel-loader'
+        }
+      }
     ]
   },
   output: {
