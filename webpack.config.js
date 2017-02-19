@@ -1,11 +1,10 @@
 const { resolve } = require('path')
+const join = require('path').join
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  entry: [
-    resolve(__dirname, 'public/index.js')
-  ],
+  entry: resolve(__dirname, 'public/index.js'),
   module: {
     loaders: [
       {
@@ -29,11 +28,4 @@ module.exports = {
     new webpack.NamedModulesPlugin(),
     new webpack.EnvironmentPlugin(['NAME'])
   ],
-  devServer: {
-    contentBase: resolve(__dirname, 'public'),
-    host: '0.0.0.0',
-    inline: true,
-    port: 8080,
-    publicPath: '/'
-  }
 }

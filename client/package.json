@@ -23,7 +23,7 @@
   },
   "scripts": {
     "test": "mocha './public/*.spec.js' -u bdd -R spec --recursive --watch",
-    "dev-start": "NAME=${NAME:=noname} webpack-dev-server"
+    "dev-start": "NAME=${NAME:=noname} ./node_modules/.bin/webpack app/src/index.js app/dist/js/bundle.js --watch"
   },
   "author": "",
   "license": "ISC"
