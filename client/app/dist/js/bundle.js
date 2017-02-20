@@ -11463,6 +11463,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_mqtt___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_mqtt__);
 
 
+// MQTT CLIENT
 const client = __WEBPACK_IMPORTED_MODULE_0_mqtt___default.a.connect('mqtt://localhost:9001')
 client.on('connect', onConnected)
 client.on('message', onMessage)
@@ -11471,7 +11472,7 @@ client.on('reconnect', onReconnect)
 client.on('offline', onOffline)
 
 function onConnected () {
-  console.log('hey there')
+  console.log('connected')
   // ** update connected status in UI
 }
 
@@ -11496,8 +11497,8 @@ function onOffline () {
   // ** update connected status in UI
 }
 
-client.subscribe('welcome')
-client.publish('welcome', 'hello test')
+// SESSION VARS
+const currTopic = 'welcome'
 
 // UI + JS
 const inputBox = document.querySelector('#input-box input')
@@ -11510,8 +11511,8 @@ inputBox.addEventListener('keypress', (event) => {
 
 function publishMessage (msg) {
   if (msg && msg.length > 0) {
-    console.log(`publishing to ${'welcome'}: ${msg}`)
-    client.publish('welcome', msg, (err) => {
+    console.log(`publishing to ${currTopic}: ${msg}`)
+    client.publish(currTopic, msg, (err) => {
       if (err) {
         // ** TO-DO **
       }
@@ -11526,7 +11527,7 @@ function addToChatWindow (msg) {
   feedList.appendChild(messageItem)
 }
 
-// add default topic as global
+// style chat window UI
 // clean up sign-on behavior
 // test 2nd client
 // style?
@@ -11536,6 +11537,9 @@ function addToChatWindow (msg) {
 //       ! This works
 //        !! POst question on Stack Overflow with code from 'master' to find out what is causing the multiple connections
 //
+
+// NOTES / ??
+// What's the best way to listen for an 'Enter' keypress in a submit form? The event listener is checking for every keypress, which adds lots of unecessary events to the queue
 
 
 /***/ })

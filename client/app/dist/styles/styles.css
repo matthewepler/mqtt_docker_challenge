@@ -19,6 +19,17 @@ h3 {
 	padding: 1rem;
 }
 
+.sec-header #current-topic {
+  flex: 1;
+}
+
+.sec-header #connection-status {
+  background-color: red;
+  border-radius: 50%;
+  height: 15px;
+  width: 15px;
+}
+
 .button-sm {
 	background-color: rgba(0, 0, 0, 0.25);
 	color: white;
@@ -62,3 +73,9 @@ input {
 .label {
 	padding-left: 0.5rem;
 }
+
+li {
+  list-style: none;
+}
+
+
