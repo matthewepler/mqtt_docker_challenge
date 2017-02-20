@@ -11473,9 +11473,9 @@ client.on('offline', onOffline)
 
 function onConnected () {
   console.log('connected')
-  const statusIndicator = document.querySelector('#connection-status')
-  statusIndicator.style.backgroundColor = 'green'
-  // ** update connected status in UI
+  connected = true
+  updateConnectionStatus()
+    // ** update connected status in UI
 }
 
 function onMessage (topic, msg) {
@@ -11491,6 +11491,8 @@ function onError (err) {
 
 function onReconnect () {
   console.log('Connection lost...reconnecting.')
+  connected = false
+  updateConnectionStatus()
   // ** update connected status in UI
 }
 
@@ -11503,6 +11505,14 @@ function onOffline () {
 const currTopic = 'welcome'
 
 // UI + JS
+let connected = false
+
+function updateConnectionStatus () {
+  let color = connected ? 'lime' : 'red'
+  const statusIndicator = document.querySelector('#connection-status')
+  statusIndicator.style.backgroundColor = color
+}
+
 const inputBox = document.querySelector('#input-box input')
 inputBox.addEventListener('keypress', (event) => {
   if (event && event.key === 'Enter') {
