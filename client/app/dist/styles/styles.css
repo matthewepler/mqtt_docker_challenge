@@ -58,8 +58,19 @@ h3 {
 }
 
 #feed {
-	flex: 1;
 	background-color: white;
+  display: flex; 
+  flex-direction: column-reverse;
+	flex: 1;
+  overflow: scroll;
+}
+
+#feed-list {
+  padding: 0;
+}
+
+.message {
+  vertical-align: bottom;
 }
 
 #input-box {
@@ -82,4 +93,11 @@ li {
   list-style: none;
 }
 
+.user-id {
+  font-weight: bold;
+}
+
+.message-text {
+  margin-bottom: 1rem;
+}
 

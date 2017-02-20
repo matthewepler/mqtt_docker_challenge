@@ -11474,13 +11474,14 @@ client.on('offline', onOffline)
 function onConnected () {
   console.log('connected')
   connected = true
+  userId = client.options.clientId
   updateConnectionStatus()
-    // ** update connected status in UI
+  // ** update connected status in UI
 }
 
 function onMessage (topic, msg) {
   if (topic && msg && msg.length > 0) {
-    addToChatWindow(msg)
+    addToChatWindow(msg.toString())
   }
   console.log(`Received on ${topic}: ${msg}`)
 }
@@ -11503,14 +11504,19 @@ function onOffline () {
 
 // SESSION VARS
 const currTopic = 'welcome'
+client.subscribe(currTopic)
+let connected = false
+let userId = 'anon_user'
 
 // UI + JS
-let connected = false
+document.querySelector('#input-box input').focus()
 
 function updateConnectionStatus () {
   let color = connected ? 'lime' : 'red'
   const statusIndicator = document.querySelector('#connection-status')
   statusIndicator.style.backgroundColor = color
+
+  client.publish(currTopic, `[${userId} is now ${connected ? 'connected' : 'disconnected'}]`)
 }
 
 const inputBox = document.querySelector('#input-box input')
@@ -11535,15 +11541,27 @@ function publishMessage (msg) {
 function addToChatWindow (msg) {
   const feedList = document.querySelector('#feed-list')
   const messageItem = document.createElement('li')
-  messageItem.appendChild(document.createTextNode(msg))
+  messageItem.classList.add('message')
+  const messageContent = document.createElement('ul')
+  console.log(msg.charAt(0))
+  if (msg.charAt(0) !== '[') {
+    const messageId = document.createElement('li')
+    messageId.classList.add('user-id')
+    messageId.appendChild(document.createTextNode(userId))
+    messageContent.appendChild(messageId)
+  }
+  const messageText = document.createElement('li')
+  messageText.classList.add('message-text')
+  messageText.appendChild(document.createTextNode(msg))
+  messageContent.appendChild(messageText)
+  messageItem.appendChild(messageContent)
   feedList.appendChild(messageItem)
 }
 
-// style chat window UI
-// clean up sign-on behavior
-// test 2nd client
-// style?
-
+// append 'has joined' on connection
+// insertBefore() for each additional message
+// add 'has left' on disconnection
+//
 // the 2 connection problem
 //      Solution: run webpack with --watch + separate server
 //       ! This works
