@@ -11473,6 +11473,8 @@ client.on('offline', onOffline)
 
 function onConnected () {
   console.log('connected')
+  const statusIndicator = document.querySelector('#connection-status')
+  statusIndicator.style.backgroundColor = 'green'
   // ** update connected status in UI
 }
 

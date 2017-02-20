@@ -1,4 +1,5 @@
 h3 {
+  margin: 0;
 	padding-left: 1rem;
 }
 
@@ -8,7 +9,8 @@ h3 {
 }
 
 #nav-container {
-	background-color: pink;
+	background-color: midnightblue;
+  color: white;
 	max-width: 200px;
 	flex: 1;
 }
@@ -30,37 +32,39 @@ h3 {
   width: 15px;
 }
 
-.button-sm {
-	background-color: rgba(0, 0, 0, 0.25);
-	color: white;
-	font-size: 0.75rem;
-	padding: 0.25rem;
-	margin-left: 1rem;
+#topic-list {
+  margin-top: 1rem;
 }
 
-.button-sm:hover {
-	background-color: black;
-}
-
-.button-sm:active {
-	background-color: rgba(0, 0, 0, 0.25);
+#add-topic-button button {
+  background-color: steelblue;
+  border: none;
+  border-radius: 10px;
+  color: midnightblue;
+  display: block;
+  margin: auto;
+  width: 70%;
 }
 
 #chat-container {
-	background-color: turquoise;
+	background-color: white;
 	display: flex;
 	flex: 1;
 	flex-direction: column;
 }
 
+#chat-container .sec-header {
+  border-bottom: 1pt solid lightgrey
+}
+
 #feed {
 	flex: 1;
-	background-color: rgba(0, 0, 0, 0.2);
+	background-color: white;
 }
 
 #input-box {
 	align-items: center;
-	background-color: rgba(255, 0, 0, 0.5);
+	background-color: steelblue;
 	display: flex;
 	padding: 10px;
 }
