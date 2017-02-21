@@ -1,5 +1,23 @@
-## MQTT Chat App
+# MQTT Chat App
 This was given to me as an internal project to build up my full-stack skills.
+The goal is to learn how to make a small app using back-end tools (docker) and
+a technology we use commonly at our company (mqtt). 
+
+## Starting the App
+* run `docker-compose up` at the project root to start the broker
+* Navigate to the distribution directory:
+
+  `cd client/app/dist`
+* run a simple server. For example:
+
+  `http-server` or `python -m SimpleHTTPServer 8080`
+* navigate your browser to `localhost:8080`
+* open another browser window next to the first one
+* enter text into the input bar at the bottom of the screen and press Enter to
+  send the message. 
+* You should now see your message appearing in both windows
+
+## Assignment
 Here were the original guidelines for the project:
 
 ```
