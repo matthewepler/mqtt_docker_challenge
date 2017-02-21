@@ -1,16 +1,16 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>MQTT Chatt</title>
-		<link rel="stylesheet" href="/styles/normalize.css">
-	  <link rel="stylesheet" href="/styles/styles.css">
-	</head>
-	<body>
-		<div id="main-container">
+  <head>
+    <meta charset="utf-8">
+    <title>MQTT chat</title>
+    <link rel="stylesheet" href="styles/normalize.css">
+    <link rel="stylesheet" href="styles/styles.css">
+  </head>
+  <body>
+    <div id="main-container">
       <div id="nav-container">
-				<div class="sec-header">
-					<h3>Dodgers Chat</h3>
+        <div class="sec-header">
+          <h3>MQTT chat</h3>
         </div>
         <div id="topic-list">
           <div id="add-topic-button">
@@ -20,23 +20,24 @@
             <li>welcome</li>
           </ul>
         </div>
-			</div>
-			<div id="chat-container">
-				<div class="sec-header">
-					<h3 id="current-topic">welcome</h3>
+      </div>
+      <div id="chat-container">
+        <div class="sec-header">
+          <h3 id="current-topic">welcome</h3>
+          <div id="userId-tag"></div>
           <div id="connection-status"></div>
-				</div>
-				<div id="feed">
+        </div>
+        <div id="feed">
           <ul id="feed-list"></ul>
-				</div>
-				<div id="input-box">
-					<input type="text">
-					<div class="label">
-						[Enter] to send
-					</div>
-				</div>
-			</div>
-		</div>
-		<script src="js/bundle.js"></script>
+        </div>
+        <div id="input-box">
+          <input type="text">
+          <div class="label">
+            [Enter] to send
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/bundle.js"></script>
   </body>
 </html>

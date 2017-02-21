@@ -25,7 +25,11 @@ h3 {
   flex: 1;
 }
 
-.sec-header #connection-status {
+#userId-tag {
+  margin-right: 1rem;  
+}
+
+#connection-status {
   background-color: red;
   border-radius: 50%;
   height: 15px;
@@ -39,7 +43,7 @@ h3 {
 #add-topic-button button {
   background-color: steelblue;
   border: none;
-  border-radius: 10px;
+  border-radius: 2px;
   color: midnightblue;
   display: block;
   margin: auto;
@@ -81,6 +85,7 @@ h3 {
 }
 
 input {
+  border: none;
 	padding: 0.5rem;
 	width: 80%;
 }

@@ -9,6 +9,7 @@
   "devDependencies": {
     "babel-core": "^6.23.1",
     "babel-loader": "^6.3.2",
+    "babel-plugin-transform-class-properties": "^6.23.0",
     "babel-polyfill": "^6.23.0",
     "babel-preset-es2015": "^6.22.0",
     "babel-preset-latest": "^6.22.0",
@@ -22,8 +23,8 @@
     "webpack-dev-server": "^2.3.0"
   },
   "scripts": {
-    "test": "mocha './public/*.spec.js' -u bdd -R spec --recursive --watch",
-    "dev-start": "NAME=${NAME:=noname} ./node_modules/.bin/webpack app/src/index.js app/dist/js/bundle.js --watch"
+    "test": "mocha './app/src/*.test.js' -u bdd -R spec --recursive --watch",
+    "dev-start": "NAME=${NAME:=noname} ./node_modules/.bin/webpack app/src/index.js app/dist/js/bundle.js"
   },
   "author": "",
   "license": "ISC"
