@@ -23,9 +23,9 @@
     "webpack-dev-server": "^2.3.0"
   },
   "scripts": {
-    "test": "mocha './app/src/*.test.js' -u bdd -R spec --recursive --watch",
-    "dev-start": "NAME=${NAME:=noname} ./node_modules/.bin/webpack app/src/index.js app/dist/js/bundle.js"
+    "test": "mocha './app/src/*.spec.js' -u bdd -R spec --recursive --watch",
+    "dev-start": "NAME=${NAME:=noname} ./node_modules/.bin/webpack app/src/index.js app/dist/js/bundle.js --watch"
   },
-  "author": "",
+  "author": "matthew epler",
   "license": "ISC"
 }
