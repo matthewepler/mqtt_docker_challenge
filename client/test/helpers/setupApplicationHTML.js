@@ -1,5 +1,7 @@
-module.exports = function() {
-  console.log("setting up html");
+/* global $ */
+
+module.exports = function () {
+  console.log('loading html')
   $('#test-element').html(`<div id="main-container">
     <div id="nav-container">
       <div class="sec-header">

@@ -2,16 +2,16 @@
 import mqtt from 'mqtt'
 
 export default class Application {
-  constructor(height, width) {
+  constructor (height, width) {
     this.connected = false
     this.userId = 'anon_user'
     this.currTopic = 'welcome'
 
-    this.client = mqtt.connect('mqtt://localhost:9001');
+    this.client = mqtt.connect('mqtt://localhost:9001')
   }
 
-  init() {
-    this.client.on('close', () => { this.onClose(...args) })
+  init () {
+    this.client.on('close', () => { this.onClose() })
     this.client.on('connect', () => { this.onConnected() })
     this.client.on('error', () => { this.onError() })
     this.client.on('message', (...args) => { this.onMessage(...args) })
@@ -20,7 +20,7 @@ export default class Application {
     this.initUIElements()
   }
 
-  initUIElements() {
+  initUIElements () {
     document.querySelector('#input-box input').focus()
     const inputBox = document.querySelector('#input-box input')
     inputBox.addEventListener('keypress', (event) => {
@@ -33,7 +33,7 @@ export default class Application {
     addTopicButton.addEventListener('click', this.promptNewTopic)
   }
 
-  onConnected() {
+  onConnected () {
     this.connected = true
     this.client.subscribe(this.currTopic)
     this.userId = this.client.options.clientId
