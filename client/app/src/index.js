@@ -5,6 +5,7 @@ let connected = false
 let userId = 'anon_user'
 let currTopic = 'welcome'
 
+console.log('testing from index.js')
 const client = mqtt.connect('mqtt://localhost:9001')
 
 export const app = {

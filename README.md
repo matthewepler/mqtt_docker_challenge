@@ -17,7 +17,10 @@ a technology we use commonly at our company (mqtt).
   send the message. 
 * You should now see your message appearing in both windows
 
-## Testing Setup
+## Development Setup
+Start webpack from the client directory using `npm run dev-start`
+
+### Testing
 I am using mocha and chai to run tests in the browser. To see the tests, run a
 server in the `client` directory. Load the file `testrunner.html` in the same
 directory.
