@@ -1,4 +1,3 @@
-/* global prompt */
 import mqtt from 'mqtt'
 
 let connected = false
@@ -6,24 +5,19 @@ let userId = 'anon_user'
 let currTopic = 'welcome'
 
 const client = mqtt.connect('mqtt://localhost:9001')
-client.on('close', onClose)
 client.on('connect', onConnected)
-client.on('error', onError)
 client.on('message', onMessage)
-client.on('offline', onOffline)
+client.on('error', onError)
 client.on('reconnect', onReconnect)
+client.on('offline', onOffline)
+client.on('close', onClose)
 
-document.querySelector('#input-box input').focus()
-const inputBox = document.querySelector('#input-box input')
-inputBox.addEventListener('keypress', (event) => {
-  if (event && event.key === 'Enter') {
-    publishMessage(event.target.value.trim())
-    event.target.value = ''
-  }
-})
+const inputBoxNode = qs('#input-box input')
+const statusIndicatorNode = qs('#connection-status')
+inputBoxNode.addEventListener('keypress', onKeypress)
+qs('#add-topic-button button').addEventListener('click', promptNewTopic)
 
-const addTopicButton = document.querySelector('#add-topic-button button')
-addTopicButton.addEventListener('click', promptNewTopic)
+inputBoxNode.focus()
 
 function onConnected () {
   connected = true
@@ -34,13 +28,17 @@ function onConnected () {
 }
 
 function onMessage (topic, msg) {
-  if (topic && msg && msg.length > 0) {
-    addToChatWindow(msg.toString())
+  if (topic && msg && msg.length) {
+    addToChatWindow(
+      JSON.parse(
+        msg.toString())
+      )
+    )    
   }
 }
 
 function onError (err) {
-  console.log(`Error: ${err}`)
+  console.error(err)
 }
 
 function onReconnect () {
@@ -61,26 +59,17 @@ function onOffline () {
 }
 
 function updateConnectionStatus () {
-  let color = connected ? 'lime' : 'red'
-  const statusIndicator = document.querySelector('#connection-status')
-  statusIndicator.style.backgroundColor = color
+  statusIndicatorNode.classList.toggle('active')
 }
 
 function updateUserNameTag () {
-  const userIdTag = document.querySelector('#userId-tag')
+  const userIdTag = qs('#userId-tag')
   userIdTag.innerHTML = userId
-}
-
-function packageMessage (uid, msg) {
-  return JSON.stringify({
-    'uid': uid,
-    'msg': msg
-  })
 }
 
 function publishMessage (msg) {
   if (msg && msg.length > 0) {
-    client.publish(currTopic, packageMessage(userId, msg), (err) => {
+    client.publish(currTopic, JSON.stringify({ userId, msg }), (err) => {
       if (err) {
         // ** TO-DO **
       }
@@ -88,27 +77,25 @@ function publishMessage (msg) {
   }
 }
 
-function addToChatWindow (msg) {
-  const data = JSON.parse(msg)
-  const feedList = document.querySelector('#feed-list')
-  const messageItem = document.createElement('li')
-  messageItem.classList.add('message')
-  const messageContent = document.createElement('ul')
-  const messageText = document.createElement('li')
-
-  if (data.uid !== null) {
-    const messageId = document.createElement('li')
-    messageId.classList.add('user-id')
-    messageId.appendChild(document.createTextNode(data.uid))
-    messageContent.appendChild(messageId)
-  } else {
-    messageText.style.fontStyle = 'italic'
+function onKeypress ({ key, target }) {
+  if (key !== 'Enter') {
+    return
   }
 
-  messageText.classList.add('message-text')
-  messageText.appendChild(document.createTextNode(data.msg))
-  messageContent.appendChild(messageText)
-  messageItem.appendChild(messageContent)
+  publishMessage(target.value.trim())
+  target.value = ''
+}
+
+function addToChatWindow ({ uid, msg }) {
+  const feedList = qs('#feed-list')
+  const messageItem = document.createElement('li')
+  messageItem.classList.add('message')
+  messageItem.textContent(msg)
+
+  if (!uid) {
+    messageItem.classList.add('orphan')
+  }
+
   feedList.appendChild(messageItem)
 }
 
@@ -121,8 +108,12 @@ function addToChatWindow (msg) {
 // }
 
 function promptNewTopic () {
-  currTopic = prompt('Enter a new topic name')
+  currTopic = global.prompt('Enter a new topic name')
   console.log(currTopic)
+}
+
+function qs (selector) {
+  return document.querySelector(selector)
 }
 
 // -- TO-DO --
@@ -133,3 +124,4 @@ function promptNewTopic () {
 // how to register a disconnect across clients?
 //   seems like it has to be an event from the broker since browsers block the
 //   events provided...(?)
+
