@@ -3,37 +3,25 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  entry: [
-    resolve(__dirname, 'public/Client.js')
-  ],
+  devtool: 'source-map',
+  context: resolve(__dirname, 'src'),
+  entry: resolve(__dirname, 'index.js'),
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
-        include: /public/,
-        use: {
-          loader: 'babel-loader',
-        },
-      },
+        include: /src/,
+        loader: 'babel-loader'
+      }
     ]
   },
   output: {
-    path: resolve(__dirname, '/public'),
+    path: resolve(__dirname, 'dist'),
     filename: 'bundle.js'
   },
   plugins: [
-    // detects changes to html files
-    new HtmlWebpackPlugin({
-      template: resolve(__dirname, 'public/index.html')
-    }),
+    new HtmlWebpackPlugin(),
     new webpack.NamedModulesPlugin(),
     new webpack.EnvironmentPlugin(['NAME'])
-  ],
-  devServer: {
-    contentBase: resolve(__dirname, 'public'),
-    host: '0.0.0.0',
-    inline: true,
-    port: 8080,
-    publicPath: '/'
-  }
+  ]
 }

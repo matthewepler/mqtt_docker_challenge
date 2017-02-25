@@ -9,16 +9,16 @@ services:
     ports:
       - "1883:1883"
       - "9001:9001"
-  client1:
-    build:
-      context: ./client
-      dockerfile: Dockerfile.development
-    container_name: client1
-    command: ./docker-start.sh
-    environment:
-      - NAME=client1
-    ports:
-      - "8080:8080"
-    volumes:
-      - ./client:/home/app/src/
-
+#   client1:
+#     build:
+#       context: ./client
+#       dockerfile: Dockerfile.development
+#     container_name: client1
+#     command: ./docker-start.sh
+#     environment:
+#       - NAME=client1
+#     ports:
+#       - "8080:8080"
+#     volumes:
+#       - ./client:/home/app/src/
+# 
